@@ -1,6 +1,6 @@
 name: react app CI
 on:
-  pull-request:
+  push:
     branches: [master]
 
 jobs:
