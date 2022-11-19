@@ -1,0 +1,34 @@
+version: '3.9'
+
+services: 
+  frontend:
+    build:
+      context: .
+      dockerfile: .docker/frontend/dockerfile.dev
+    ports:
+      - '3000:3000'
+
+  selenium-hub:
+    image: selenium/hub:4.6.0-20221104
+    ports: 
+      - '4442:4442'
+      - '4443:4443'
+      - '4444:4444'
+
+  firefox:
+    image: selenium/node-firefox:4.6.0-20221104
+    depends_on:
+      - selenium-hub
+    volumes:
+      - /dev/shm:/dev/shm  
+    shm_size: 2gb      
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_SESSION_TIMEOUT=25
+      - SE_NODE_MAX_INSTANCE=5
+      - SE_NODE_MAX_SESSIONS=1
+
+  selenium-host:
+    image: selcuktemizsoy/selenium-demo:latest
