@@ -4,7 +4,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: .docker/frontend/dockerfile.dev
+      dockerfile: .docker/frontend/Dockerfile.dev
     ports:
       - '3000:3000'
 
@@ -27,7 +27,7 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_SESSION_TIMEOUT=25
-      - SE_NODE_MAX_INSTANCE=5
+      - SE_NODE_MAX_INSTANCE=1
       - SE_NODE_MAX_SESSIONS=1
 
   selenium-host:
