@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Setup CI environment
         run: make build-ci-env
@@ -21,4 +21,3 @@ jobs:
         run: make start-ci-test     
       - name: Deploy
         run: echo "you can add deployment steps from now on. Remaining steps will be running after previous steps passed."  
-        
